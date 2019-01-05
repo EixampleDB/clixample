@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import Model.OperationDTO;
 
 
 public class Controller {
@@ -26,8 +27,8 @@ public class Controller {
         con.setRequestProperty("User-Agent", keys);
         int responseCode = con.getResponseCode();
         
-	System.out.println("GET Response Code :: " + responseCode);
-	if (responseCode == HttpURLConnection.HTTP_OK) { // success
+    	System.out.println("GET Response Code :: " + responseCode);
+    	if (responseCode == HttpURLConnection.HTTP_OK) { // success
             BufferedReader in = new BufferedReader(new InputStreamReader(
                     con.getInputStream()));
             String inputLine;
@@ -43,8 +44,30 @@ public class Controller {
 			System.out.println("GET request not worked");
 		}
     }
-    
-    
-    
-    
+
+    private static void sendBULK(List<OperationDTO> operationsList){
+        URL obj = new URL (GET_URL);
+        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+        con.setRequestMethod("BULK");
+
+        con.setRequestProperty("User-Agent", operationsList);
+        int responseCode = con.getResponseCode();
+        
+        System.out.println("BULK Response Code :: " + responseCode);
+        if (responseCode == HttpURLConnection.HTTP_OK) { // success
+            BufferedReader in = new BufferedReader(new InputStreamReader(
+                    con.getInputStream()));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+
+            // print result
+            System.out.println(response.toString());
+        } else {
+            System.out.println("BULK request not worked");
+        }
+    }      
 }
