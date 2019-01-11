@@ -1,6 +1,4 @@
-
-package Enums;
-
+package model;
 
 public enum OperationType {
     GET,
