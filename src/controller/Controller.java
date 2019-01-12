@@ -24,17 +24,13 @@ public class Controller {
     }
 
     public void sendDELETE(String key) throws  IOException{
-    	URL url = new URL(GET_URL + key);
-    	HttpURLConnection con = (HttpURLConnection) url.openConnection();
-    	con.setRequestMethod("DELETE");
-    	header = Header.createHeader(key);
-    	con.setRequestProperty("Content-Type", header);
-    	int responseCode = con.getResponseCode();
-        if(responseCode == 200) {
-        	System.out.println("Response OK\n");
-        }else {
-        	System.out.println("Response NOK\n");
-        }
+        URL obj = new URL(GET_URL + "?" +key);
+
+        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+        con.setRequestMethod("DELETE");
+
+        int responseCode = con.getResponseCode();
+
     }
     
     public void sendSET(String key, String value, String valueType) throws  IOException{
