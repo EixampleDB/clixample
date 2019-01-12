@@ -17,9 +17,9 @@ public class Controller {
         con.setRequestProperty("Content-Type", header);
         int responseCode = con.getResponseCode();
         if(responseCode == 200) {
-        	System.out.println("Response OK\n");
+        	System.out.println("Response: " + responseCode + " OK\n");
         }else {
-        	System.out.println("Response NOK\n");
+        	System.out.println("Response: " + responseCode + " NOK\n");
         }
     }
 
@@ -31,39 +31,55 @@ public class Controller {
     	con.setRequestProperty("Content-Type", header);
     	int responseCode = con.getResponseCode();
         if(responseCode == 200) {
-        	System.out.println("Response OK\n");
+        	System.out.println("Response: " + responseCode + " OK\n");
         }else {
-        	System.out.println("Response NOK\n");
+        	System.out.println("Response: " + responseCode + " NOK\n");
         }
     }
     
-    public void sendSET(String key, String value, String valueType) throws  IOException{
+    public void sendSET(String key, String value) throws  IOException{
 
-        URL obj = new URL(GET_URL + "?" +key);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+    	URL url = new URL(GET_URL + key);
+    	HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("POST");
-
-
-        con.setRequestProperty("Content-type",valueType);
+        header = Header.createHeader(key);
+        con.setRequestProperty("Content-type", header);
         con.setDoOutput(true);
         DataOutputStream out = new DataOutputStream(con.getOutputStream());
         out.writeBytes(value);
         int responseCode = con.getResponseCode();
+        if(responseCode == 200) {
+        	System.out.println("Response: " + responseCode + " OK\n");
+        }else {
+        	System.out.println("Response: " + responseCode + " NOK\n");
+        }
     }
     
     public void sendINCR(String key) throws IOException {
-        URL obj = new URL(GET_URL + "?" + key);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-        con.setRequestMethod("PUT");
-
-        int responseCode = con.getResponseCode();
+    	URL url = new URL(GET_URL + key);
+    	HttpURLConnection con = (HttpURLConnection) url.openConnection();
+    	con.setRequestMethod("PUT");
+    	header = Header.createHeader(key);
+    	con.setRequestProperty("Content-Type", header);
+    	int responseCode = con.getResponseCode();
+        if(responseCode == 200) {
+        	System.out.println("Response: " + responseCode + " OK\n");
+        }else {
+        	System.out.println("Response: " + responseCode + " NOK\n");
+        }
     }
     
     public void sendDECR(String key) throws IOException {
-        URL obj = new URL(GET_URL + "?" + key);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-        con.setRequestMethod("PUT");
-
-        int responseCode = con.getResponseCode();
+    	URL url = new URL(GET_URL + key);
+    	HttpURLConnection con = (HttpURLConnection) url.openConnection();
+    	con.setRequestMethod("PUT");
+    	header = Header.createHeader(key);
+    	con.setRequestProperty("Content-Type", header);
+    	int responseCode = con.getResponseCode();
+        if(responseCode == 200) {
+        	System.out.println("Response: " + responseCode + " OK\n");
+        }else {
+        	System.out.println("Response: " + responseCode + " NOK\n");
+        }
     }   
 }
