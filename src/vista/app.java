@@ -50,7 +50,7 @@ public class app {
 	}
 	
 	public static void printMenu() {
-		System.out.println("Insert Command: GET <key>\nSET <key> <value>\nDELETE <key>\nINCR <key>\nDECR <key>\nBULK\nEXIT\n");
+		System.out.println("Insert Command:\nGET <key>\nSET <key> <value>\nDELETE <key>\nINCR <key>\nDECR <key>\nBULK\nEXIT\n");
 	}
 
 }
