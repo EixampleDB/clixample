@@ -9,6 +9,7 @@ import model.*;
 public class Controller {
 	String header;
 	private static final String GET_URL = "http://localhost:5333/";
+	
     public void sendGET(String key) throws IOException {
         URL url = new URL(GET_URL + key);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -16,11 +17,7 @@ public class Controller {
         header = Header.createHeader(key);
         con.setRequestProperty("Content-Type", header);
         int responseCode = con.getResponseCode();
-        if(responseCode == 200) {
-        	System.out.println("Response OK\n");
-        }else {
-        	System.out.println("Response NOK\n");
-        }
+        System.out.println("Respone: " + responseCode + "\n");
     }
 
     public void sendDELETE(String key) throws  IOException{
@@ -30,30 +27,22 @@ public class Controller {
         header = Header.createHeader(key);
         con.setRequestProperty("Content-Type", header);
         int responseCode = con.getResponseCode();
-        if(responseCode == 200) {
-        	System.out.println("Response OK\n");
-        }else {
-        	System.out.println("Response NOK\n");
-        }
+        System.out.println("Respone: " + responseCode + "\n");
 
     }
     
     public void sendSET(String key, String value, String valueType) throws  IOException{
         
-        URL url = new URL(GET_URL + key);
+        URL url = new URL(GET_URL);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
-        con.setRequestMethod("GET");        
+        con.setRequestMethod("POST");        
         header = Header.createHeader(key);
         con.setRequestProperty("Content-Type", header);
         con.setDoOutput(true);
         DataOutputStream out = new DataOutputStream(con.getOutputStream());
         out.writeBytes(value);
         int responseCode = con.getResponseCode();
-        if(responseCode == 200) {
-        	System.out.println("Response OK\n");
-        }else {
-        	System.out.println("Response NOK\n");
-        }
+        System.out.println("Respone: " + responseCode + "\n");
     }
     
     public void sendINCR(String key) throws IOException {
@@ -63,11 +52,7 @@ public class Controller {
         header = Header.createHeader(key);
         con.setRequestProperty("Content-Type", header);
         int responseCode = con.getResponseCode();
-        if(responseCode == 200) {
-        	System.out.println("Response OK\n");
-        }else {
-        	System.out.println("Response NOK\n");
-        }
+        System.out.println("Respone: " + responseCode + "\n");
     }
     
     public void sendDECR(String key) throws IOException {
@@ -77,10 +62,6 @@ public class Controller {
         header = Header.createHeader(key);
         con.setRequestProperty("Content-Type", header);
         int responseCode = con.getResponseCode();
-        if(responseCode == 200) {
-        	System.out.println("Response OK\n");
-        }else {
-        	System.out.println("Response NOK\n");
-        }
+        System.out.println("Respone: " + responseCode + "\n");
     }   
 }
